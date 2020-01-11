@@ -88,11 +88,6 @@ class Stack:
 
 
 
-st =Stack()
-
-val = st.isParanthesisBalanced("{}}}")
-print(val)
-
 
 
 
