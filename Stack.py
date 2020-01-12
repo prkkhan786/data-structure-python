@@ -5,6 +5,7 @@ class Stack:
 
     def push(self,val):
         """
+        O(1)
         insert value in stack
         :param val:
         """
@@ -12,6 +13,7 @@ class Stack:
 
     def pop(self):
         '''
+        O(1)
         Remove element from stack
         :return:
         element removed
@@ -20,6 +22,7 @@ class Stack:
 
     def isEmpty(self):
         '''
+        O(1)
         checks if stack empty or not
         :return:
         boolean
@@ -30,7 +33,7 @@ class Stack:
         get the last inserted element in stack
         :return:
         '''
-        return self.stack[len(self.stack)-1]
+        return self.stack[-1]
     def size(self):
         '''
         return the size of stack
@@ -85,6 +88,69 @@ class Stack:
             return True
         else:
             return False
+
+
+    def StockSpanProblem(self,arr):
+
+        '''
+        O(n) space
+        O(n) time
+        :param arr:
+        :return:
+        '''
+        ans = [0] * len(arr)
+        ans[0] = 1
+
+        stack = []
+        stack.append(0)
+
+        for index in range(1,len(arr)):
+            #compate arr[stack.peek()] and arr[index]
+            while(len(stack)>0  and arr[stack[-1]<=arr[index]]):
+                stack.pop()
+            if(len(stack)==0):
+                ans[index] = index + 1
+            else:
+                ans[index] = index - stack[-1]
+            stack.append(index)
+        return ans
+
+
+    def NextGreaterElement(self,arr):
+
+        pass
+
+    def hasDuplicateBrackets(self,src):
+        '''
+        find if there is duplicates brackets or not
+        :param src:
+        :return:
+        '''
+        stack = Stack()
+        for ch in src:
+            if(ch==')'):
+                if (stack.peek() == '('):
+                    return True
+                while (stack.peek() != '('):
+                    stack.pop()
+                stack.pop()
+            else:
+                stack.push(ch)
+
+        return False
+
+st = Stack()
+ans = st.hasDuplicateBrackets("(((a+(b))+(c+d)))")
+print(ans)
+
+
+
+
+
+
+
+
+
 
 
 
