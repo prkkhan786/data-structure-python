@@ -18,7 +18,7 @@ class Stack:
         :return:
         element removed
         '''
-        self.stack.pop()
+        return self.stack.pop()
 
     def isEmpty(self):
         '''
@@ -33,7 +33,9 @@ class Stack:
         get the last inserted element in stack
         :return:
         '''
-        return self.stack[-1]
+        if(len(self.stack)!=0):
+            return self.stack[-1]
+        print("Stack is empty")
     def size(self):
         '''
         return the size of stack
@@ -118,7 +120,25 @@ class Stack:
 
     def NextGreaterElement(self,arr):
 
-        pass
+        '''
+        This function finds the next greater element of each element in the array
+        :param arr:
+        :return:
+        '''
+
+        stack = Stack()
+        ans = [None] * len(arr)
+        stack.push(0)
+        for i in range(1,len(arr)):
+            while(stack.isEmpty()==False and arr[i]>arr[stack.peek()]):
+                val = stack.pop()
+                ans[val] = arr[i]
+            stack.push(i)
+
+        while (stack.isEmpty() == False):
+            ans[stack.pop()] = -1
+        return ans
+
 
     def hasDuplicateBrackets(self,src):
         '''
@@ -139,9 +159,45 @@ class Stack:
 
         return False
 
-st = Stack()
-ans = st.hasDuplicateBrackets("(((a+(b))+(c+d)))")
+# st = Stack()
+#
+# ans = st.NextGreaterElement([5,9,8,3,2,7,16,4,14,19,3])
+#
+#
+# for i in range(10):
+#     print(i)
+
+
+def NextGreaterElement(arr):
+    ans = [None] * len((arr))
+
+    stack = []
+    stack.append(0)
+
+    for i in range(1,len(arr)):
+        while(len(stack)!=0 and arr[i]>arr[stack[-1]]):
+            val = stack.pop()
+            ans[val] = arr[i]
+        stack.append(i)
+
+    while(len(stack)!=0):
+        ans[stack.pop()] = -1
+    return ans
+
+
+ans = NextGreaterElement([5,9,8,3,2,7,16,4,14,19,3])
 print(ans)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
