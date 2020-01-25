@@ -162,6 +162,27 @@ class Stack:
 
 
 
+def reverseAStringUsingStack(str):
+    '''
+    Reverse a string using stack data structure
+    :param str:
+    string to reverse
+    :return:
+    reversed string
+    '''
+    st = Stack()
+
+    for ch in str:
+        st.push(ch)
+
+    ans = ""
+    for _ in range(st.size()):
+        ans+= st.pop()
+
+    print(ans)
+
+
+
 
 # st = Stack()
 #
@@ -230,8 +251,9 @@ def DDII(str):
 
 
 
-DDII('dddddddd')
+# DDII('dddddddd')
 
+reverseAStringUsingStack("hello")
 
 
 

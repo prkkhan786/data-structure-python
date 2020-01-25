@@ -38,6 +38,13 @@ class LinkedList:
             self.head = newnode
             newnode.next = t
 
+    def getFirst(self):
+        pass
+
+    def getLast(self):
+        pass
+
+
 
     def Display(self):
         temp = self.head
