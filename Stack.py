@@ -3,7 +3,7 @@ class Stack:
         self.stack = []
         self.Size = 0
 
-    def push(self,val):
+    def push(self, val):
         """
         O(1)
         insert value in stack
@@ -28,14 +28,16 @@ class Stack:
         boolean
         '''
         return len(self.stack) == 0
+
     def peek(self):
         '''
         get the last inserted element in stack
         :return:
         '''
-        if(len(self.stack)!=0):
+        if (len(self.stack) != 0):
             return self.stack[-1]
         print("Stack is empty")
+
     def size(self):
         '''
         return the size of stack
@@ -49,6 +51,7 @@ class Stack:
         :return:
         '''
         self.stack = []
+
     def getMin(self):
         '''
         returns the min element from the stack
@@ -61,13 +64,13 @@ class Stack:
         print the stack elements
         :return:
         '''
-        if(self.size()==0):
+        if (self.size() == 0):
             print("Stack is empty")
         for val in self.stack:
-            print(str(val) + "->",end="")
+            print(str(val) + "->", end="")
         print()
 
-    def isParanthesisBalanced(self,str):
+    def isParanthesisBalanced(self, str):
         '''
         checks if the given string has balanced paranthesis
         :return:
@@ -75,24 +78,23 @@ class Stack:
         '''
         stack = Stack()
         for ch in str:
-            if(ch=='{' or ch=='[' or ch=='('):
+            if (ch == '{' or ch == '[' or ch == '('):
                 stack.push(ch)
             else:
-                if(stack.size()==0):
+                if (stack.size() == 0):
                     return False
-                if(ch==']' and stack.peek()=='['):
+                if (ch == ']' and stack.peek() == '['):
                     stack.pop()
-                elif(ch=='}' and stack.peek()=='{'):
+                elif (ch == '}' and stack.peek() == '{'):
                     stack.pop()
-                elif(ch==')' and stack.peek()=='('):
+                elif (ch == ')' and stack.peek() == '('):
                     stack.pop()
-        if(stack.size()==0):
+        if (stack.size() == 0):
             return True
         else:
             return False
 
-
-    def StockSpanProblem(self,arr):
+    def StockSpanProblem(self, arr):
 
         '''
         O(n) space
@@ -106,19 +108,18 @@ class Stack:
         stack = []
         stack.append(0)
 
-        for index in range(1,len(arr)):
-            #compate arr[stack.peek()] and arr[index]
-            while(len(stack)>0  and arr[stack[-1]<=arr[index]]):
+        for index in range(1, len(arr)):
+            # compate arr[stack.peek()] and arr[index]
+            while (len(stack) > 0 and arr[stack[-1] <= arr[index]]):
                 stack.pop()
-            if(len(stack)==0):
+            if (len(stack) == 0):
                 ans[index] = index + 1
             else:
                 ans[index] = index - stack[-1]
             stack.append(index)
         return ans
 
-
-    def NextGreaterElement(self,arr):
+    def NextGreaterElement(self, arr):
 
         '''
         This function finds the next greater element of each element in the array
@@ -129,8 +130,8 @@ class Stack:
         stack = Stack()
         ans = [None] * len(arr)
         stack.push(0)
-        for i in range(1,len(arr)):
-            while(stack.isEmpty()==False and arr[i]>arr[stack.peek()]):
+        for i in range(1, len(arr)):
+            while (stack.isEmpty() == False and arr[i] > arr[stack.peek()]):
                 val = stack.pop()
                 ans[val] = arr[i]
             stack.push(i)
@@ -139,8 +140,7 @@ class Stack:
             ans[stack.pop()] = -1
         return ans
 
-
-    def hasDuplicateBrackets(self,src):
+    def hasDuplicateBrackets(self, src):
         '''
         find if there is duplicates brackets or not
         :param src:
@@ -148,7 +148,7 @@ class Stack:
         '''
         stack = Stack()
         for ch in src:
-            if(ch==')'):
+            if (ch == ')'):
                 if (stack.peek() == '('):
                     return True
                 while (stack.peek() != '('):
@@ -158,6 +158,10 @@ class Stack:
                 stack.push(ch)
 
         return False
+
+
+
+
 
 # st = Stack()
 #
@@ -174,49 +178,59 @@ def NextGreaterElement(arr):
     stack = []
     stack.append(0)
 
-    for i in range(1,len(arr)):
-        while(len(stack)!=0 and arr[i]>arr[stack[-1]]):
+    for i in range(1, len(arr)):
+        while (len(stack) != 0 and arr[i] > arr[stack[-1]]):
             val = stack.pop()
             ans[val] = arr[i]
         stack.append(i)
 
-    while(len(stack)!=0):
+    while (len(stack) != 0):
         ans[stack.pop()] = -1
     return ans
 
 
-ans = NextGreaterElement([5,9,8,3,2,7,16,4,14,19,3])
-print(ans)
+# ans = NextGreaterElement([5,9,8,3,2,7,16,4,14,19,3])
+# print(ans)
+
+def NextGreaterEkementLeetCode(num1, num2):
+    hash = dict()
+    stack = []
+    stack.append(num2[0])
+    count = 0
+    for i in range(1, len(num2)):
+
+        while (len(stack) != 0 and (num2[i] > stack[-1])):
+            hash[stack.pop()] = num2[i]
+        stack.append(num2[i])
+
+    for i in num1:
+        if (i in hash):
+            print(hash.get(i))
+        else:
+            print(-1)
+    print(hash)
+
+
+# NextGreaterEkementLeetCode([1, 3, 5, 2, 4], [6, 5, 4, 3, 2, 1, 7])
+
+def DDII(str):
+    stack = []
+    count = 1
+    for ch in str:
+        if(ch=='d'):
+            stack.append(count)
+            count = count + 1
+        else:
+            stack.append(count)
+            count+=1
+            while(len(stack)!=0):
+                print(stack.pop())
+    while(len(stack)!=0):
+        print(stack.pop())
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+DDII('dddddddd')
 
 
 

@@ -6,3 +6,20 @@ def Duplicate(str):
         else:
             hash[str[i]] = hash.get(str[i]) + 1
     return hash
+
+
+def getExtensionOfFile(filename):
+    if(len(filename)==0):
+        return "Error"
+    filenameArray = filename.split(".")
+    return filenameArray[-1]
+
+
+def getListOfFiles(basepath):
+    pass
+
+
+
+
+
+
